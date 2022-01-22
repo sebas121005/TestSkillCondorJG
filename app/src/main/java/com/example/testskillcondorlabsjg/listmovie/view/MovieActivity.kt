@@ -19,7 +19,7 @@ class MovieActivity : AppCompatActivity() {
         initializeWidgets()
     }
 
-    fun initializeWidgets() {
+    private fun initializeWidgets() {
         movieListAdapter = MovieListAdapter(this, ArrayList())
 
         with(movieBinding?.listMovies) {
