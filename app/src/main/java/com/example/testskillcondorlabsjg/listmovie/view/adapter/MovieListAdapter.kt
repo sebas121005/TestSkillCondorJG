@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testskillcondorlabsjg.databinding.ItemMovieBinding
 import com.example.testskillcondorlabsjg.listmovie.model.Movie
+import com.squareup.picasso.BuildConfig
+import com.squareup.picasso.Picasso
 
 class MovieListAdapter(private val context: Context, private val dataMovie: List<Movie>):
     RecyclerView.Adapter<MovieListAdapter.ViewHolderMovie>() {
@@ -32,6 +34,7 @@ class MovieListAdapter(private val context: Context, private val dataMovie: List
         fun addItemMovie(movie: Movie) {
             itemMovieBinding.movieName.text = movie.movieName
             itemMovieBinding.averageMovie.text = movie.movieAverage.toString()
+            Picasso.get().load("${BuildConfig.URL_IMAGE}${movie.moviePosterPath}")
         }
     }
 }

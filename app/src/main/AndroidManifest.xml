@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestSkillCondorLabsJG">
         <activity
-            android:name=".listmovie.view.MainActivity"
+            android:name=".listmovie.view.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
