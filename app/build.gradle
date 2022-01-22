@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "URL_IMAGE", "\"${url_image_movie}\"")
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
