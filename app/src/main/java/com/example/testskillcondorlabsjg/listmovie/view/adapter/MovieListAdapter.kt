@@ -20,7 +20,7 @@ class MovieListAdapter(private val context: Context, val dataMovie: List<Movie>)
     }
 
     override fun onBindViewHolder(holder: ViewHolderMovie, position: Int) {
-        TODO("Not yet implemented")
+        holder.addItemMovie(dataMovie[position])
     }
 
     override fun getItemCount(): Int {
@@ -28,8 +28,8 @@ class MovieListAdapter(private val context: Context, val dataMovie: List<Movie>)
     }
 
     class ViewHolderMovie(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var mPosterImageview: ImageView? = null
-        var mNameMovieTextView: TextView? = null
+        private var mPosterImageview: ImageView? = null
+        private var mNameMovieTextView: TextView? = null
         var mAverageTextView: TextView? = null
         init {
             mPosterImageview = itemView.findViewById(R.id.poster_image)
@@ -37,8 +37,9 @@ class MovieListAdapter(private val context: Context, val dataMovie: List<Movie>)
             mAverageTextView = itemView.findViewById(R.id.average_movie)
         }
 
-        fun addItemMovie() {
-
+        fun addItemMovie(movie: Movie) {
+            mNameMovieTextView?.text = movie.movieName
+            mAverageTextView?.text = movie.movieAverage.toString()
         }
     }
 }
