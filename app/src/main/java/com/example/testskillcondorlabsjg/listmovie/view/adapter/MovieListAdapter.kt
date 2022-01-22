@@ -36,5 +36,9 @@ class MovieListAdapter(private val context: Context, val dataMovie: List<Movie>)
             mNameMovieTextView = itemView.findViewById(R.id.movie_name)
             mAverageTextView = itemView.findViewById(R.id.average_movie)
         }
+
+        fun addItemMovie() {
+
+        }
     }
 }
