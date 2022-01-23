@@ -14,6 +14,111 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_detail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/cardview_dark_background"
+            app:titleTextColor="@color/white"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+        <TextView
+            android:id="@+id/tittle_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:text="Detalle"/>
+
+        <TextView
+            android:id="@+id/tittle_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tittle_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Resumen:"/>
+
+        <TextView
+            android:id="@+id/overview_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tittle_overview"
+            app:layout_constraintEnd_toEndOf="@id/tittle_overview"
+            android:layout_marginStart="50dp"/>
+
+        <TextView
+            android:id="@+id/tittle_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/overview_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Fecha de lanzamiento:"/>
+
+        <TextView
+            android:id="@+id/date_release_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tittle_release"
+            app:layout_constraintEnd_toEndOf="@id/tittle_release"
+            android:layout_marginStart="50dp"/>
+
+
+        <TextView
+            android:id="@+id/tittle_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/date_release_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Fecha de lanzamiento:"/>
+
+        <TextView
+            android:id="@+id/budget_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tittle_budget"
+            app:layout_constraintEnd_toEndOf="@id/tittle_budget"
+            android:layout_marginStart="50dp"/>
+
+        <TextView
+            android:id="@+id/tittle_trailer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/budget_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Trailer:"/>
+
+        <TextView
+            android:id="@+id/trailer_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tittle_trailer"
+            app:layout_constraintEnd_toEndOf="@id/tittle_trailer"
+            android:layout_marginStart="50dp"/>
+
+        <TextView
+            android:id="@+id/tittle_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/trailer_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Es favorito?"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
