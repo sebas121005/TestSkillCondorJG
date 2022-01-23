@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testskillcondorlabsjg.BuildConfig
 import com.example.testskillcondorlabsjg.databinding.ItemMovieBinding
 import com.example.testskillcondorlabsjg.listmovie.model.Movie
+import com.example.testskillcondorlabsjg.listmovie.viewmodel.MovieListViewModel
 import com.squareup.picasso.Picasso
 
-class MovieListAdapter(private val context: Context, private val dataMovie: List<Movie>):
+class MovieListAdapter(private val context: Context, private val dataMovie: List<Movie> ,
+                        private val movieListViewModel: MovieListViewModel):
     RecyclerView.Adapter<MovieListAdapter.ViewHolderMovie>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMovie {
@@ -36,6 +38,10 @@ class MovieListAdapter(private val context: Context, private val dataMovie: List
             itemMovieBinding.averageMovie.text = movie.movieAverage.toString()
             Picasso.get().load("${BuildConfig.URL_IMAGE}${movie.moviePosterPath}")
                 .into(itemMovieBinding.posterImage)
+
+            itemMovieBinding.seeDetail.setOnClickListener {
+
+            }
         }
     }
 }
