@@ -14,6 +14,8 @@ android {
         versionName "1.0"
 
         buildConfigField("String", "URL_IMAGE", "\"${url_image_movie}\"")
+        buildConfigField("String", "URL_SERVER", "\"${url_server}\"")
+        buildConfigField("String", "API_KEY", "\"${api_key}\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
