@@ -35,6 +35,7 @@ class MovieListAdapter(private val context: Context, private val dataMovie: List
             itemMovieBinding.movieName.text = movie.movieName
             itemMovieBinding.averageMovie.text = movie.movieAverage.toString()
             Picasso.get().load("${BuildConfig.URL_IMAGE}${movie.moviePosterPath}")
+                .into(itemMovieBinding.posterImage)
         }
     }
 }
