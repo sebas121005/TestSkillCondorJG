@@ -36,4 +36,6 @@ class Movie {
     @Expose
     var movieId: Int? = null
 
+    var movieFavorite: Boolean? = false
+
 }

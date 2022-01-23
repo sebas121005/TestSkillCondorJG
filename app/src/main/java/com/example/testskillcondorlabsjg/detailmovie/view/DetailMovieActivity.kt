@@ -64,6 +64,19 @@ class DetailMovieActivity : AppCompatActivity() {
         mDetailMovieBinding?.dateReleaseMovie?.text = intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE)
         mDetailMovieBinding?.budgetMovie?.text = intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE)
         intent.extras?.getBoolean(MovieListViewModel.TRAILER_MOVIE)
+
+        val movieDataTable = mDetailMovieViewModel?.getDataDetailMovie()
+
+        if (movieDataTable?.movieId != null) {
+            movieDataTable.movieFavorite?.let { setChangeToggleFavorite(it) }
+
+        } else {
+            mDetailMovieViewModel?.insertDataMovie(intent.extras?.getString(MovieListViewModel.OVERVIEW_MOVIE),
+                intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE),
+                intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE),
+                intent.extras?.getString(MovieListViewModel.ID_MOVIE), false)
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
