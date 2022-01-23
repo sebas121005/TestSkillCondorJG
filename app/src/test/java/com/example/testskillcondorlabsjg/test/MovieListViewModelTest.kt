@@ -15,6 +15,6 @@ class MovieListViewModelTest {
 
     @Test
     fun getMovies() {
-        
+
     }
 }

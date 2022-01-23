@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestSkillCondorLabsJG">
         <activity
+            android:name=".splash.view.SplashMovieActivity"
+            android:exported="true" />
+        <activity
             android:name=".detailmovie.view.DetailMovieActivity"
             android:exported="true" />
         <activity
