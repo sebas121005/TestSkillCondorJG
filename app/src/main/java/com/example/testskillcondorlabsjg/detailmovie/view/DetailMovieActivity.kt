@@ -25,6 +25,7 @@ class DetailMovieActivity : AppCompatActivity() {
         setContentView(view)
 
         initializeWidget()
+        observables()
     }
 
     private fun initializeWidget() {
@@ -32,9 +33,27 @@ class DetailMovieActivity : AppCompatActivity() {
         supportActionBar?.title = "Detalle Pelicula"
         mDetailMovieViewModel = ViewModelProvider(this)[DetailMovieViewModel::class.java]
         mDetailMovieViewModel?.dbMovieHelper = SQLiteMovieHelper(this)
+        mDetailMovieViewModel?.db = mDetailMovieViewModel?.dbMovieHelper?.writableDatabase
 
 
         showDetailMovie()
+    }
+
+    private fun observables() {
+        mDetailMovieViewModel?.getDataMovieLiveData?.observe(this, { movie ->
+            if (movie?.movieId != null && movie.movieId ==
+                intent.extras?.getInt(MovieListViewModel.ID_MOVIE)) {
+                movie.movieFavorite?.let { setChangeToggleFavorite(it) }
+
+            } else {
+                mDetailMovieViewModel?.insertDataMovie(intent.extras?.getString(MovieListViewModel.OVERVIEW_MOVIE),
+                    intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE),
+                    intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE),
+                    intent.extras?.getInt(MovieListViewModel.ID_MOVIE), false, this)
+
+                setChangeToggleFavorite(false)
+            }
+        })
     }
 
     private fun setChangeToggleFavorite(isFavorite: Boolean) {
@@ -49,11 +68,13 @@ class DetailMovieActivity : AppCompatActivity() {
 
         mDetailMovieBinding?.isFavoriteToggle?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                mDetailMovieViewModel?.updateFavoriteMovie(1)
+                mDetailMovieViewModel?.updateFavoriteMovie(1,
+                    intent.extras?.getInt(MovieListViewModel.ID_MOVIE))
                 mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
                     applicationContext, R.drawable.star_enabled)
             } else {
-                mDetailMovieViewModel?.updateFavoriteMovie(0)
+                mDetailMovieViewModel?.updateFavoriteMovie(0,
+                    intent.extras?.getInt(MovieListViewModel.ID_MOVIE))
                 mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
                     applicationContext, R.drawable.star_disabled)
             }
@@ -64,21 +85,8 @@ class DetailMovieActivity : AppCompatActivity() {
         mDetailMovieBinding?.overviewMovie?.text = intent.extras?.getString(MovieListViewModel.OVERVIEW_MOVIE)
         mDetailMovieBinding?.dateReleaseMovie?.text = intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE)
         mDetailMovieBinding?.budgetMovie?.text = intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE)
-        intent.extras?.getBoolean(MovieListViewModel.TRAILER_MOVIE)
 
-        val movieDataTable = mDetailMovieViewModel?.getDataDetailMovie()
-
-        if (movieDataTable?.movieId != null) {
-            movieDataTable.movieFavorite?.let { setChangeToggleFavorite(it) }
-
-        } else {
-            mDetailMovieViewModel?.insertDataMovie(intent.extras?.getString(MovieListViewModel.OVERVIEW_MOVIE),
-                intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE),
-                intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE),
-                intent.extras?.getString(MovieListViewModel.ID_MOVIE), false)
-
-            setChangeToggleFavorite(false)
-        }
+        mDetailMovieViewModel?.getDataDetailMovie(intent.extras?.getInt(MovieListViewModel.ID_MOVIE))
 
     }
 
@@ -90,5 +98,15 @@ class DetailMovieActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mDetailMovieViewModel?.db?.close()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

@@ -9,26 +9,29 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.content.ContentValues
+import android.content.Context
 import com.example.testskillcondorlabsjg.listmovie.viewmodel.MovieListViewModel
 import org.json.JSONObject
 import android.database.Cursor
+import androidx.lifecycle.MutableLiveData
 import com.example.testskillcondorlabsjg.listmovie.model.Movie
 
 
 class DetailMovieViewModel: ViewModel() {
 
     var dbMovieHelper: SQLiteMovieHelper? = null
-    private val db: SQLiteDatabase? = dbMovieHelper?.writableDatabase
+    var db: SQLiteDatabase? = null
+
+    val getDataMovieLiveData = MutableLiveData<Movie>()
 
     companion object {
         const val COLUMN_DATA = "data"
         const val COLUMN_FAVORITE = "favorite"
-        const val TABLE_MOVIE = "datamovies"
+        const val TABLE_MOVIE = "movies"
     }
 
     fun insertDataMovie(overview: String?, dateRelease: String?, budget: String?,
-                        id: String?, isFavorite: Boolean?) {
-
+                        id: Int?, isFavorite: Boolean?, context: Context) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val dataJson = JSONObject()
@@ -41,33 +44,35 @@ class DetailMovieViewModel: ViewModel() {
                 contentValues.put(COLUMN_DATA, dataJson.toString())
                 contentValues.put(COLUMN_FAVORITE, if (isFavorite!!) 1 else 0)
                 db?.insert(TABLE_MOVIE, null, contentValues)
-                db?.close()
             }
         }
     }
 
     @SuppressLint("Range")
-    fun getDataDetailMovie(): Movie {
+    fun getDataDetailMovie(idMovie: Int?) {
         val movieData = Movie()
+        var movieId: String? = null
+        var movieFavorite: String? = null
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val cursor: Cursor? = db?.rawQuery(
-                    "SELECT ${MovieListViewModel.ID_MOVIE}, $COLUMN_FAVORITE FROM $TABLE_MOVIE",
+                    "SELECT ${MovieListViewModel.ID_MOVIE}, $COLUMN_FAVORITE FROM $TABLE_MOVIE" +
+                            " WHERE ${MovieListViewModel.ID_MOVIE}=$idMovie",
                     null
                 )
-                var movieId: String? = null
-                var movieFavorite: String? = null
 
-                if (cursor != null) {
+
+                if (cursor != null && cursor.count > 0) {
                     cursor.moveToFirst()
                     do {
                         movieId =
                             cursor.getString(cursor.getColumnIndex(MovieListViewModel.ID_MOVIE))
                         movieFavorite = cursor.getString(cursor.getColumnIndex(COLUMN_FAVORITE))
                     } while (cursor.moveToNext())
+
                 }
                 cursor?.close()
-                db?.close()
+
 
                 movieData.movieId = movieId?.toInt()
                 movieData.movieFavorite = movieFavorite.equals("1")
@@ -75,16 +80,17 @@ class DetailMovieViewModel: ViewModel() {
 
         }
 
-        return movieData
+        getDataMovieLiveData.value = movieData
     }
 
-    fun updateFavoriteMovie(isFavorite: Int?) {
+    fun updateFavoriteMovie(isFavorite: Int?, idMovie: Int?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val contentValues = ContentValues()
-                db?.update(TABLE_MOVIE, contentValues, "$COLUMN_FAVORITE='$isFavorite'",
+                contentValues.put(COLUMN_FAVORITE, isFavorite)
+                db?.update(TABLE_MOVIE, contentValues, "${MovieListViewModel.ID_MOVIE}='" +
+                        "$idMovie'",
                     null)
-                db?.close()
             }
         }
     }
