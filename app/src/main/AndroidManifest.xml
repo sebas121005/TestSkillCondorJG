@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testskillcondorlabsjg">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestSkillCondorLabsJG">
-
+        <activity
+            android:name=".detailmovie.view.DetailMovieActivity"
+            android:exported="true" />
         <activity
             android:name=".listmovie.view.MovieActivity"
             android:exported="true">
