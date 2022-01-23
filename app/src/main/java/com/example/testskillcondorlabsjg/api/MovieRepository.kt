@@ -1,8 +1,6 @@
-package com.example.testskillcondorlabsjg
+package com.example.testskillcondorlabsjg.api
 
-import com.example.testskillcondorlabsjg.api.ApiCallbackHelper
-import com.example.testskillcondorlabsjg.api.RetrofitManager
-import com.example.testskillcondorlabsjg.api.WebService
+import com.example.testskillcondorlabsjg.BuildConfig
 import com.example.testskillcondorlabsjg.listmovie.model.ResultMovie
 import retrofit2.Call
 import retrofit2.Callback

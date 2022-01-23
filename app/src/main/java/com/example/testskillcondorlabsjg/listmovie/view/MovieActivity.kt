@@ -32,6 +32,7 @@ class MovieActivity : AppCompatActivity() {
             this?.layoutManager = LinearLayoutManager(this@MovieActivity)
             this?.adapter = mMovieListAdapter
         }
+        mMovieViewModel?.getMovies()
     }
 
     private fun observables() {

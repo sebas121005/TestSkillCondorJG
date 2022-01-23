@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WebService {
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getMovies(@Query("api_key") apiKey: String): Call<ResultMovie>
 }

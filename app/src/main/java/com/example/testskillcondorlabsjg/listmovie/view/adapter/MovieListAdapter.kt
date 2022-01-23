@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testskillcondorlabsjg.BuildConfig
 import com.example.testskillcondorlabsjg.databinding.ItemMovieBinding
 import com.example.testskillcondorlabsjg.listmovie.model.Movie
-import com.squareup.picasso.BuildConfig
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(private val context: Context, private val dataMovie: List<Movie>):
