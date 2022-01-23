@@ -1,5 +1,6 @@
 package com.example.testskillcondorlabsjg
 
+import com.example.testskillcondorlabsjg.api.ApiCallbackHelper
 import com.example.testskillcondorlabsjg.api.RetrofitManager
 import com.example.testskillcondorlabsjg.api.WebService
 import com.example.testskillcondorlabsjg.listmovie.model.Movie
@@ -14,14 +15,14 @@ class MovieRepository {
         webService = RetrofitManager().createWebService(BuildConfig.URL_SERVER)
     }
 
-    fun getMovies() {
+    fun getMovies(callbackHelper: ApiCallbackHelper<Movie>) {
         webService?.getMovies(BuildConfig.API_KEY)?.enqueue(object: Callback<Movie> {
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
-                TODO("Not yet implemented")
+                response.body()?.let { callbackHelper.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<Movie>, t: Throwable) {
-                TODO("Not yet implemented")
+                callbackHelper.onFailure()
             }
 
         })
