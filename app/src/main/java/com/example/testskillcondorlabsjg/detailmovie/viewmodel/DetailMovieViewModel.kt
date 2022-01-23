@@ -41,6 +41,7 @@ class DetailMovieViewModel: ViewModel() {
                 contentValues.put(COLUMN_DATA, dataJson.toString())
                 contentValues.put(COLUMN_FAVORITE, if (isFavorite!!) 1 else 0)
                 db?.insert(TABLE_MOVIE, null, contentValues)
+                db?.close()
             }
         }
     }
@@ -51,7 +52,7 @@ class DetailMovieViewModel: ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val cursor: Cursor? = db?.rawQuery(
-                    "SELECT id, favorite FROM $TABLE_MOVIE",
+                    "SELECT ${MovieListViewModel.ID_MOVIE}, $COLUMN_FAVORITE FROM $TABLE_MOVIE",
                     null
                 )
                 var movieId: String? = null
@@ -75,5 +76,16 @@ class DetailMovieViewModel: ViewModel() {
         }
 
         return movieData
+    }
+
+    fun updateFavoriteMovie(isFavorite: Int?) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val contentValues = ContentValues()
+                db?.update(TABLE_MOVIE, contentValues, "$COLUMN_FAVORITE='$isFavorite'",
+                    null)
+                db?.close()
+            }
+        }
     }
 }

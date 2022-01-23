@@ -33,7 +33,6 @@ class DetailMovieActivity : AppCompatActivity() {
         mDetailMovieViewModel = ViewModelProvider(this)[DetailMovieViewModel::class.java]
         mDetailMovieViewModel?.dbMovieHelper = SQLiteMovieHelper(this)
 
-        setChangeToggleFavorite(true)
 
         showDetailMovie()
     }
@@ -50,9 +49,11 @@ class DetailMovieActivity : AppCompatActivity() {
 
         mDetailMovieBinding?.isFavoriteToggle?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
+                mDetailMovieViewModel?.updateFavoriteMovie(1)
                 mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
                     applicationContext, R.drawable.star_enabled)
             } else {
+                mDetailMovieViewModel?.updateFavoriteMovie(0)
                 mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
                     applicationContext, R.drawable.star_disabled)
             }
@@ -75,6 +76,8 @@ class DetailMovieActivity : AppCompatActivity() {
                 intent.extras?.getString(MovieListViewModel.RELEASE_MOVIE),
                 intent.extras?.getString(MovieListViewModel.BUDGET_MOVIE),
                 intent.extras?.getString(MovieListViewModel.ID_MOVIE), false)
+
+            setChangeToggleFavorite(false)
         }
 
     }
