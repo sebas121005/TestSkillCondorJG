@@ -11,7 +11,7 @@ import com.example.testskillcondorlabsjg.listmovie.viewmodel.MovieListViewModel
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(private val context: Context, private val dataMovie: List<Movie> ,
-                        private val movieListViewModel: MovieListViewModel):
+                        private val movieListViewModel: MovieListViewModel?):
     RecyclerView.Adapter<MovieListAdapter.ViewHolderMovie>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMovie {
@@ -24,6 +24,7 @@ class MovieListAdapter(private val context: Context, private val dataMovie: List
 
     override fun onBindViewHolder(holder: ViewHolderMovie, position: Int) {
         holder.addItemMovie(dataMovie[position])
+        holder.onClickDetailMovie(dataMovie[position], movieListViewModel)
     }
 
     override fun getItemCount(): Int {
@@ -39,8 +40,11 @@ class MovieListAdapter(private val context: Context, private val dataMovie: List
             Picasso.get().load("${BuildConfig.URL_IMAGE}${movie.moviePosterPath}")
                 .into(itemMovieBinding.posterImage)
 
-            itemMovieBinding.seeDetail.setOnClickListener {
+        }
 
+        fun onClickDetailMovie(movie: Movie, movieListViewModel: MovieListViewModel?) {
+            itemMovieBinding.seeDetail.setOnClickListener {
+                movieListViewModel?.showDetailMovieLiveData?.value = movie
             }
         }
     }

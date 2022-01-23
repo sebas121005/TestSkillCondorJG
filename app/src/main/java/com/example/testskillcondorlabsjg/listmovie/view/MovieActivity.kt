@@ -27,7 +27,7 @@ class MovieActivity : AppCompatActivity() {
 
     private fun initializeWidgets() {
         mMovieViewModel = ViewModelProvider(this)[MovieListViewModel::class.java]
-        mMovieListAdapter = MovieListAdapter(this, dataMovieList)
+        mMovieListAdapter = MovieListAdapter(this, dataMovieList, mMovieViewModel)
         with(mMovieBinding?.listMovies) {
             this?.layoutManager = LinearLayoutManager(this@MovieActivity)
             this?.adapter = mMovieListAdapter
@@ -42,6 +42,10 @@ class MovieActivity : AppCompatActivity() {
                 dataMovieList.addAll(listMovies)
                 mMovieListAdapter?.notifyDataSetChanged()
             }
+        })
+
+        mMovieViewModel?.showDetailMovieLiveData?.observe(this, {
+
         })
     }
 }
