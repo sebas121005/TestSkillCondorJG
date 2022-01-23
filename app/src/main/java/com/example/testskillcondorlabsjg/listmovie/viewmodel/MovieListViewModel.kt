@@ -31,4 +31,11 @@ class MovieListViewModel: ViewModel() {
             }
         }
     }
+
+    companion object {
+        const val OVERVIEW_MOVIE = "overview"
+        const val RELEASE_MOVIE = "release_date"
+        const val BUDGET_MOVIE = "budget"
+        const val TRAILER_MOVIE = "trailer"
+    }
 }

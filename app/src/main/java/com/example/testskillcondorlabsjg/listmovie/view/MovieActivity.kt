@@ -48,10 +48,10 @@ class MovieActivity : AppCompatActivity() {
 
         mMovieViewModel?.showDetailMovieLiveData?.observe(this, {
             val intentDetail = Intent(this, DetailMovieActivity::class.java)
-            intentDetail.putExtra("overview", it.movieOverview)
-            intentDetail.putExtra("release_date", it.movieReleaseDate)
-            intentDetail.putExtra("budget", it.movieBudget)
-            intentDetail.putExtra("trailer", it.movieTrailer)
+            intentDetail.putExtra(MovieListViewModel.OVERVIEW_MOVIE, it.movieOverview)
+            intentDetail.putExtra(MovieListViewModel.RELEASE_MOVIE, it.movieReleaseDate)
+            intentDetail.putExtra(MovieListViewModel.BUDGET_MOVIE, it.movieBudget)
+            intentDetail.putExtra(MovieListViewModel.TRAILER_MOVIE, it.movieTrailer)
             startActivity(intentDetail)
         })
     }
