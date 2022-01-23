@@ -8,13 +8,15 @@ import com.example.testskillcondorlabsjg.listmovie.viewmodel.MovieListViewModel
 import android.view.MenuItem
 import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
-
-
-
+import androidx.lifecycle.ViewModelProvider
+import com.example.testskillcondorlabsjg.database.SQLiteMovieHelper
+import com.example.testskillcondorlabsjg.detailmovie.viewmodel.DetailMovieViewModel
 
 
 class DetailMovieActivity : AppCompatActivity() {
     private var mDetailMovieBinding: ActivityDetailMovieBinding? = null
+    private var mDetailMovieViewModel: DetailMovieViewModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,6 +30,8 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun initializeWidget() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Detalle Pelicula"
+        mDetailMovieViewModel = ViewModelProvider(this)[DetailMovieViewModel::class.java]
+        mDetailMovieViewModel?.dbMovieHelper = SQLiteMovieHelper(this)
 
         setChangeToggleFavorite(true)
 
