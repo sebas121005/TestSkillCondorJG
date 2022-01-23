@@ -32,4 +32,8 @@ class Movie {
     @Expose
     var movieTrailer: Boolean? = null
 
+    @SerializedName("id")
+    @Expose
+    var movieId: Int? = null
+
 }

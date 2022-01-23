@@ -37,5 +37,6 @@ class MovieListViewModel: ViewModel() {
         const val RELEASE_MOVIE = "release_date"
         const val BUDGET_MOVIE = "budget"
         const val TRAILER_MOVIE = "trailer"
+        const val ID_MOVIE = "id"
     }
 }

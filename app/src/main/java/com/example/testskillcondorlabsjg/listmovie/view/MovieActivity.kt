@@ -52,6 +52,7 @@ class MovieActivity : AppCompatActivity() {
             intentDetail.putExtra(MovieListViewModel.RELEASE_MOVIE, it.movieReleaseDate)
             intentDetail.putExtra(MovieListViewModel.BUDGET_MOVIE, it.movieBudget)
             intentDetail.putExtra(MovieListViewModel.TRAILER_MOVIE, it.movieTrailer)
+            intentDetail.putExtra(MovieListViewModel.ID_MOVIE, it.movieId)
             startActivity(intentDetail)
         })
     }
