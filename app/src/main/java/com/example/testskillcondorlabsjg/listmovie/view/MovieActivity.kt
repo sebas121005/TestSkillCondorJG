@@ -56,4 +56,9 @@ class MovieActivity : AppCompatActivity() {
             startActivity(intentDetail)
         })
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
 }
