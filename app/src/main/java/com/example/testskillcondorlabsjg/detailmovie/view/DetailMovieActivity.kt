@@ -6,6 +6,9 @@ import com.example.testskillcondorlabsjg.R
 import com.example.testskillcondorlabsjg.databinding.ActivityDetailMovieBinding
 import com.example.testskillcondorlabsjg.listmovie.viewmodel.MovieListViewModel
 import android.view.MenuItem
+import android.widget.CompoundButton
+import androidx.core.content.ContextCompat
+
 
 
 
@@ -26,7 +29,30 @@ class DetailMovieActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Detalle Pelicula"
 
+        setChangeToggleFavorite(true)
+
         showDetailMovie()
+    }
+
+    private fun setChangeToggleFavorite(isFavorite: Boolean) {
+        if (isFavorite) {
+            mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
+                this, R.drawable.star_enabled)
+        } else {
+            mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
+                this, R.drawable.star_disabled)
+        }
+
+
+        mDetailMovieBinding?.isFavoriteToggle?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
+                    applicationContext, R.drawable.star_enabled)
+            } else {
+                mDetailMovieBinding?.isFavoriteToggle?.background = ContextCompat.getDrawable(
+                    applicationContext, R.drawable.star_disabled)
+            }
+        }
     }
 
     private fun showDetailMovie() {

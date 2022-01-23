@@ -109,11 +109,14 @@
             android:text="Es favorito?"/>
 
         <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/is_favorite_toggle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             app:layout_constraintTop_toBottomOf="@id/tittle_favorite"
             app:layout_constraintStart_toEndOf="@id/tittle_favorite"
-            android:layout_marginStart="50dp"/>
+            android:layout_marginStart="50dp"
+            android:textOn=""
+            android:textOff=""/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
