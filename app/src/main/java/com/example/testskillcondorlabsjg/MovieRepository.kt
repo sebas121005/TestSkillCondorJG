@@ -11,11 +11,11 @@ class MovieRepository {
     private var webService: WebService? = null
 
     init {
-        webService = RetrofitManager().createWebService("")
+        webService = RetrofitManager().createWebService(BuildConfig.URL_SERVER)
     }
 
     fun getMovies() {
-        webService?.getMovies("")?.enqueue(object: Callback<Movie> {
+        webService?.getMovies(BuildConfig.API_KEY)?.enqueue(object: Callback<Movie> {
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
                 TODO("Not yet implemented")
             }
