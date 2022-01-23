@@ -7,7 +7,7 @@
     <data>
         <variable
             name="model"
-            type="" />
+            type="com.example.testskillcondorlabsjg.detailmovie.viewmodel.DetailMovieViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
