@@ -5,20 +5,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testskillcondorlabsjg.MovieRepository
 import com.example.testskillcondorlabsjg.api.ApiCallbackHelper
-import com.example.testskillcondorlabsjg.listmovie.model.Movie
+import com.example.testskillcondorlabsjg.listmovie.model.ResultMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MovieListViewModel: ViewModel() {
     private val movieRepository = MovieRepository()
-    val showListMoviesLiveDate = MutableLiveData<Movie>()
+    val showListMoviesLiveDate = MutableLiveData<ResultMovie>()
 
     fun getMovies() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                movieRepository.getMovies(object : ApiCallbackHelper<Movie> {
-                    override fun onSuccess(response: Movie) {
+                movieRepository.getMovies(object : ApiCallbackHelper<ResultMovie> {
+                    override fun onSuccess(response: ResultMovie) {
                         showListMoviesLiveDate.value = response
                     }
 
