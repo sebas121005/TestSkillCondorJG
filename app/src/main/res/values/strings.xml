@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TestSkillCondorLabsJG</string>
+    <string name="detalle">Detalle</string>
+    <string name="resumen">Resumen:</string>
+    <string name="fecha_de_lanzamiento">Fecha de lanzamiento:</string>
+    <string name="presupuesto">Presupuesto:</string>
+    <string name="trailer">Trailer:</string>
+    <string name="es_favorito">Es favorito?</string>
+    <string name="promedio_votos">Promedio votos:</string>
+    <string name="detalle_pelicula">Detalle Pelicula</string>
 </resources>

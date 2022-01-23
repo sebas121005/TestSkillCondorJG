@@ -30,7 +30,7 @@ class DetailMovieActivity : AppCompatActivity() {
 
     private fun initializeWidget() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Detalle Pelicula"
+        supportActionBar?.title = getString(R.string.detalle_pelicula)
         mDetailMovieViewModel = ViewModelProvider(this)[DetailMovieViewModel::class.java]
         mDetailMovieViewModel?.dbMovieHelper = SQLiteMovieHelper(this)
         mDetailMovieViewModel?.db = mDetailMovieViewModel?.dbMovieHelper?.writableDatabase

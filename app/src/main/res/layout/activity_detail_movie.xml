@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"
             android:textSize="30sp"
-            android:text="Detalle"/>
+            android:text="@string/detalle"/>
 
         <TextView
             android:id="@+id/tittle_overview"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:text="Resumen:"/>
+            android:text="@string/resumen"/>
 
         <TextView
             android:id="@+id/overview_movie"
@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:text="Fecha de lanzamiento:"/>
+            android:text="@string/fecha_de_lanzamiento"/>
 
         <TextView
             android:id="@+id/date_release_movie"
@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:text="Presupuesto:"/>
+            android:text="@string/presupuesto"/>
 
         <TextView
             android:id="@+id/budget_movie"
@@ -88,7 +88,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:text="Trailer:"/>
+            android:text="@string/trailer"/>
 
         <TextView
             android:id="@+id/trailer_movie"
@@ -106,7 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:text="Es favorito?"/>
+            android:text="@string/es_favorito"/>
 
         <ToggleButton
             android:id="@+id/is_favorite_toggle"
